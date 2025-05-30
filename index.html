@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미림 마이스터고 1학년 1반 학생들의 생성형 AI 사용 실태 조사 보고서 - 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif; /* Tailwind 기본 폰트 스택과 유사 */
+            background-color: #F4F7F9; /* Light Background */
+            color: #263238; /* Dark Text */
+        }
+        .chart-container {
+            position: relative; /* Chart.js 반응형에 필요 */
+            margin: auto;
+            /* height: 300px; md:height: 400px; /* 기본 높이, 반응형으로 조정 가능 */
+            /* width: 100%; */
+        }
+
+        /* 색상 팔레트 변수 (Tailwind JIT 모드가 아니므로 직접 사용 또는 클래스 확장 필요) */
+        :root {
+            --primary-blue: #2A62B6;
+            --secondary-teal: #4ECDC4;
+            --accent-grey: #A9A9A9;
+            --supporting-light-blue: #E0F2FE;
+            --dark-text: #263238;
+            --light-background: #FFFFFF;
+            --page-background: #F4F7F9;
+        }
+
+        .bg-primary-blue { background-color: var(--primary-blue); }
+        .text-primary-blue { color: var(--primary-blue); }
+        .border-primary-blue { border-color: var(--primary-blue); }
+
+        .bg-secondary-teal { background-color: var(--secondary-teal); }
+        .text-secondary-teal { color: var(--secondary-teal); }
+
+        .bg-accent-grey { background-color: var(--accent-grey); }
+        .text-accent-grey { color: var(--accent-grey); }
+
+        .bg-supporting-light-blue { background-color: var(--supporting-light-blue); }
+        
+        .report-title {
+            color: var(--primary-blue);
+        }
+        .section-title {
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--secondary-teal);
+            padding-bottom: 0.5rem;
+        }
+        .card {
+            background-color: var(--light-background);
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .keyword-tag {
+            background-color: var(--supporting-light-blue);
+            color: var(--primary-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+        }
+        .quote-text {
+            font-style: italic;
+            color: var(--dark-text);
+            border-left: 4px solid var(--secondary-teal);
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+        }
+        /* Chart.js 툴팁 스타일 (필요시 추가) */
+        .chartjs-tooltip {
+            opacity: 1;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 3px;
+            transition: all .1s ease;
+            pointer-events: none;
+            transform: translate(-50%, 0);
+        }
+        .chartjs-tooltip-key {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+        }
+        /* Pretendard 폰트 (CDN 예시 - 실제 사용시에는 아래 링크를 활성화하거나, Tailwind 설정에 포함) */
+        /* @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; } */
+    </style>
+</head>
+<body class="bg-page-background text-dark-text p-4 md:p-8">
+
+    <header class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold report-title mb-2">미림 마이스터고 1학년 1반 학생들의 생성형 AI 사용 실태 조사 보고서</h1>
+        <p class="text-md md:text-lg text-accent-grey">주요 연구 내용 및 결과 요약 인포그래픽</p>
+    </header>
+
+    <main class="space-y-12">
+        <section id="overview" class="card p-6 md:p-8">
+            <h2 class="text-2xl font-semibold section-title mb-6">조사 개요</h2>
+            <p class="text-gray-700 leading-relaxed">
+                본 조사는 미림 마이스터고 1학년 1반 학생들을 대상으로 생성형 AI의 사용 실태를 파악하고,
+                학습 및 과제 수행에 미치는 영향과 인식을 분석하는 것을 목표로 한다.
+                조사는 설문과 심층 인터뷰 방식으로 진행되었다.
+                이를 통해 생성형 AI의 올바른 활용 방안을 모색하고 AI 리터러시 함양에 기여하고자 한다.
+            </p>
+        </section>
+
+        <section id="survey-results" class="card p-6 md:p-8">
+            <h2 class="text-2xl font-semibold section-title mb-8">설문 조사 결과</h2>
+            <p class="text-gray-700 mb-8">총 19명의 학생이 설문에 참여했다. 주요 결과는 다음과 같다.</p>
+            <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8">
+                <article class="text-center p-4 border border-gray-200 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-1 text-primary-blue">Q1. 생성형 AI 사용 빈도</h3>
+                    <p class="text-sm text-gray-600 mb-3">평소 공부나 과제를 할 때 생성형 AI를 얼마나 자주 사용하는가?</p>
+                    <div class="chart-container w-full max-w-md mx-auto h-72 md:h-80">
+                        <canvas id="q1Chart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-700"><strong>주목할 만한 내용:</strong> 모든 학생이 생성형 AI를 사용하며, 과반수의 학생(68.4%)이 '자주 사용함' 또는 '매우 자주 사용함'으로 응답하여 적극적인 사용 경향을 보였다.</p>
+                </article>
+                <article class="text-center p-4 border border-gray-200 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-1 text-primary-blue">Q2. 생성형 AI 도움 여부</h3>
+                    <p class="text-sm text-gray-600 mb-3">생성형 AI가 공부나 과제 수행에 도움이 된다고 생각하는가?</p>
+                    <div class="chart-container w-full max-w-md mx-auto h-72 md:h-80">
+                        <canvas id="q2Chart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-700"><strong>주목할 만한 내용:</strong> 과반수의 학생(78.9%)이 생성형 AI가 '그렇다' 또는 '매우 그렇다'고 응답하여, 학습 지원 도구로서의 유용성을 높게 평가했다.</p>
+                </article>
+                <article class="text-center p-4 border border-gray-200 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold mb-1 text-primary-blue">Q3. 생성형 AI 문제점 인지 수준</h3>
+                    <p class="text-sm text-gray-600 mb-3">생성형 AI 사용 시 발생할 수 있는 문제점(잘못된 정보, 표절 등)을 얼마나 인지하는가?</p>
+                    <div class="chart-container w-full max-w-md mx-auto h-72 md:h-80">
+                        <canvas id="q3Chart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-700"><strong>주목할 만한 내용:</strong> 과반수의 학생(83.9%)이 문제점을 '인지하고 있음' 또는 '매우 잘 인지하고 있음'으로 응답하여, 잠재적 위험성에 대한 인식이 높은 것으로 나타났다.</p>
+                </article>
+                </div>
+        </section>
+
+        <section id="interview-results" class="card p-6 md:p-8">
+            <h2 class="text-2xl font-semibold section-title mb-8">심층 인터뷰 결과</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <article class="p-6 border border-gray-200 rounded-lg shadow-sm bg-supporting-light-blue">
+                    <h3 class="text-xl font-semibold mb-3 text-primary-blue">인터뷰 1: 이주호 학생</h3>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-dark-text mb-1">주요 키워드:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="keyword-tag">AI 의존 경계</span>
+                            <span class="keyword-tag">주도적 사고</span>
+                            <span class="keyword-tag">체계적 교육 필요</span>
+                            <span class="keyword-tag">정보 신뢰성</span>
+                            <span class="keyword-tag">윤리적 책임</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-dark-text mb-1">주목할 만한 내용:</h4>
+                        <p class="quote-text">"AI한테 전부 다 의존하지 않고 자기도 생각하면서 발전을 하며 같이 쓸 수 있도록 하기 위해."</p>
+                        <p class="mt-2 text-sm text-gray-700">→ 생성형 AI를 도구로 인식하고, 자기 주도 학습과 병행하려는 태도를 강조한 내용이다.</p>
+                    </div>
+                </article>
+                <article class="p-6 border border-gray-200 rounded-lg shadow-sm bg-supporting-light-blue">
+                    <h3 class="text-xl font-semibold mb-3 text-primary-blue">인터뷰 2: 노영재 학생</h3>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-dark-text mb-1">주요 키워드:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="keyword-tag">정보 탐색 활용</span>
+                            <span class="keyword-tag">효율성 긍정</span>
+                            <span class="keyword-tag">부정확한 답변 경험</span>
+                            <span class="keyword-tag">반복 질문 보완</span>
+                            <span class="keyword-tag">주제 이해 도구</span>
+                            <span class="keyword-tag">능동적 해석</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-dark-text mb-1">주목할 만한 내용:</h4>
+                        <p class="quote-text">"AI의 정보를 단순히 외우는 게 아니라 그 분야를 이해하기 위해서 사용한다는 말씀이시네요."</p>
+                        <p class="mt-2 text-sm text-gray-700">→ AI의 답변을 그대로 수용하는 것이 아니라, 비판적으로 이해하려는 학습 태도가 돋보이는 내용이다.</p>
+                    </div>
+                </article>
+                </div>
+        </section>
+
+        <section id="conclusion" class="card p-6 md:p-8">
+            <h2 class="text-2xl font-semibold section-title mb-6">종합 결론 및 제언</h2>
+            <div class="space-y-4 text-gray-700 leading-relaxed">
+                <p>
+                    미림 마이스터고 1학년 1반 학생들은 생성형 AI를 학습에 적극적으로 활용하며 그 유용성을 높게 평가하고 있었다.
+                    동시에 AI 사용에 따른 문제점에 대해서도 상당 부분 인지하고 있는 것으로 나타났다.
+                </p>
+                <p>
+                    인터뷰 결과, 학생들은 AI에 대한 맹목적 의존을 경계하고 주도적인 학습 태도를 유지하려는 의지를 보였다.
+                    또한, 정보의 신뢰성 확보와 윤리적 사용의 중요성을 인식하고 있었다.
+                </p>
+                <p>
+                    이러한 결과를 바탕으로, 학생들의 AI 리터러시를 더욱 강화하고 비판적 사고 능력을 함양할 수 있는 체계적인 교육 프로그램 마련이 필요하다.
+                    생성형 AI를 효과적이고 윤리적인 학습 도구로 활용할 수 있도록 지원하는 환경 조성이 중요할 것이다.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center mt-12 py-6 border-t border-accent-grey">
+        <p class="text-sm text-accent-grey">&copy; 2025 미림 마이스터고 1학년 1반 (가상). 본 인포그래픽은 학생 조사 보고서를 기반으로 생성되었습니다.</p>
+        <p class="text-xs text-accent-grey mt-1">색상 팔레트: Professional & Clear (Primary: #2A62B6, Secondary: #4ECDC4)</p>
+    </footer>
+
+    <script>
+        // Chart.js 데이터 및 설정
+        const surveyData = {
+            q1: {
+                labels: ['거의 사용 안 함', '가끔 사용함', '사용함', '자주 사용함', '매우 자주 사용함'],
+                data: [0, 4, 2, 7, 6],
+                percentages: [0, 21.1, 10.5, 36.8, 31.6]
+            },
+            q2: {
+                labels: ['전혀 그렇지 않다', '그렇지 않다', '보통이다', '그렇다', '매우 그렇다'],
+                data: [0, 2, 2, 8, 7],
+                percentages: [0, 10.5, 10.5, 42.1, 36.8]
+            },
+            q3: {
+                labels: ['전혀 인지하지 못함', '잘 인지하지 못함', '인지하는 것 같음', '인지하고 있음', '매우 잘 인지하고 있음'],
+                data: [0, 1, 2, 11, 5],
+                percentages: [0, 5.3, 10.5, 57.9, 26.3] // 57.6을 57.9로 수정 (합계 100% 근사)
+            }
+        };
+
+        const chartColors = {
+            primaryBlue: '#2A62B6',
+            secondaryTeal: '#4ECDC4',
+            accentGrey: '#A9A9A9',
+            supportingLightBlue: '#E0F2FE',
+            customSet1: ['#2A62B6', '#4ECDC4', '#A9A9A9', '#88BBE4', '#F2C94C', '#EB5757'],
+            customSet2: ['#4CAF50', '#FFC107', '#F44336', '#2196F3', '#9C27B0'],
+        };
+        
+        function createPieChart(canvasId, chartData, titleText, colorSet = chartColors.customSet1) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            
+            // 한국어 레이블 줄 바꿈 (약 10자 기준, 필요시 조정)
+            const formattedLabels = chartData.labels.map(label => {
+                if (label.length > 10) {
+                    // 공백 기준으로 우선 나누고, 안되면 강제 분할
+                    const parts = label.split(' ');
+                    if (parts.length > 1 && parts.every(p => p.length <=10)) {
+                        return parts;
+                    }
+                    return label.match(/.{1,10}/g) || label;
+                }
+                return label;
+            });
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: formattedLabels,
+                    datasets: [{
+                        label: titleText,
+                        data: chartData.percentages, // 비율로 표시
+                        backgroundColor: colorSet,
+                        borderColor: '#FFFFFF',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: false, // 차트 내 제목은 숨김 (HTML에 이미 있음)
+                            text: titleText,
+                            font: { size: 16, weight: 'bold' },
+                            color: chartColors.darkText
+                        },
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 11 },
+                                color: chartColors.darkText,
+                                boxWidth: 15,
+                                padding: 15,
+                                // 범례 항목이 길 경우 줄바꿈 (Chart.js v3+ 에서 직접 지원은 어려움, 짧게 유지 권장)
+                                // formatter: function(value, legendItem) {
+                                //     const label = legendItem.text;
+                                //     return label.length > 15 ? label.substring(0, 15) + '...' : label;
+                                // }
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 12 },
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        // context.label은 배열일 수 있음 (줄바꿈된 경우)
+                                        const originalLabel = Array.isArray(context.label) ? context.label.join('') : context.label;
+                                        label = originalLabel + ': ' + context.parsed.toFixed(1) + '% (' + chartData.data[context.dataIndex] + '명)';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 차트 생성 호출
+        if (document.getElementById('q1Chart')) {
+            createPieChart('q1Chart', surveyData.q1, 'Q1. 생성형 AI 사용 빈도', ['#2A62B6', '#4ECDC4', '#F2C94C', '#EB5757', '#A9A9A9']);
+        }
+        if (document.getElementById('q2Chart')) {
+            createPieChart('q2Chart', surveyData.q2, 'Q2. 생성형 AI 도움 여부', ['#4CAF50', '#8BC34A', '#FFEB3B', '#FF9800', '#F44336'].reverse());
+        }
+        if (document.getElementById('q3Chart')) {
+            createPieChart('q3Chart', surveyData.q3, 'Q3. 생성형 AI 문제점 인지 수준', ['#3F51B5', '#2196F3', '#03A9F4', '#00BCD4', '#B2EBF2'].reverse());
+        }
+
+    </script>
+    </body>
+</html>
